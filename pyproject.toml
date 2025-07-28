@@ -21,4 +21,29 @@ build-backend = "poetry.core.masonry.api"
 Cython = "==0.29.36"
 watchdog = "^6.0.0"
 buildozer = "==1.2.0"
+ruff = "^0.12.5"
+taskipy = "^1.14.1"
+radon = "^6.0.1"
+bandit = "^1.8.6"
 
+[tool.ruff]
+line-length = 99
+
+[tool.ruff.lint]
+preview = true
+select = ['I', 'F', 'E', 'W', 'PL', 'PT']
+
+[tool.ruff.format]
+preview = true
+quote-style = 'single'
+
+# [tool.ruff.lint.per-file-ignores]
+# 'connect_to_server.py' = ['W293']
+
+[tool.taskipy.tasks]
+lint = 'ruff check .; ruff check . --diff'
+format = 'ruff format .; ruff check . --fix'
+radon = 'radon cc ./android -a -na'
+bandit = 'bandit -r ./android'
+run = 'poetry run python main.py'
+dev = 'poetry run python hot_reload.py'
