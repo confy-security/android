@@ -1,0 +1,24 @@
+[project]
+name = "android"
+version = "0.0.1"
+description = ""
+authors = [
+    {name = "Henrique Sebastião",email = "contato@henriquesebastiao.com"}
+]
+readme = "README.md"
+requires-python = ">=3.9,<3.10"
+dependencies = [
+    "kivy (>=2.3.1,<3.0.0)",
+    "kivymd2 (>=2.0.1,<3.0.0)",
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.group.dev.dependencies]
+Cython = "==0.29.36"
+watchdog = "^6.0.0"
+buildozer = "==1.2.0"
+

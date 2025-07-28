@@ -1,0 +1,57 @@
+#:kivy 2.0.1
+
+AnchorLayout:
+    anchor_x: "center"
+    anchor_y: "center"
+
+    MDBoxLayout:
+        orientation: "vertical"
+        spacing: "20dp"
+        padding: "20dp"
+        md_bg_color: self.theme_cls.backgroundColor
+        size_hint: 1, 1  # Ocupa toda a tela
+
+        Widget:  # Espaço acima
+
+        Image:
+            source: "android/assets/shield.png"
+            size_hint_y: None
+            height: "80dp"
+            allow_stretch: True
+            halign: "center"
+
+        MDTextField:
+            id: username
+            size_hint_x: None
+            width: "310dp"
+            pos_hint: {"center_x": 0.5}
+
+            MDTextFieldHintText:
+                text: "Username"
+
+            MDTextFieldLeadingIcon:
+                icon: "account"
+
+        MDTextField:
+            id: server
+            size_hint_x: None
+            width: "310dp"
+            pos_hint: {"center_x": 0.5}
+
+            MDTextFieldHintText:
+                text: "Endereço do Servidor"
+            
+            MDTextFieldLeadingIcon:
+                icon: "server-network"
+            
+            MDTextFieldHelperText:
+                text: "Exemplo: 200.56.11.2:8000"
+
+        MDButton:
+            style: "filled"
+            pos_hint: {"center_x": 0.5}
+
+            MDButtonText:
+                text: "Conectar"
+
+        Widget:
