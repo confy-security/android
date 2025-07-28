@@ -37,9 +37,6 @@ select = ['I', 'F', 'E', 'W', 'PL', 'PT']
 preview = true
 quote-style = 'single'
 
-# [tool.ruff.lint.per-file-ignores]
-# 'connect_to_server.py' = ['W293']
-
 [tool.taskipy.tasks]
 lint = 'ruff check .; ruff check . --diff'
 format = 'ruff format .; ruff check . --fix'
