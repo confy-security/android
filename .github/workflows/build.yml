@@ -1,0 +1,82 @@
+name: Build
+
+on:
+  [push]
+  # push:
+  #   tags:
+  #     - '*'
+
+concurrency:
+  group: ${{ github.workflow}}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  # generate_changelog:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Check out repository
+  #       uses: actions/checkout@v4
+      
+  #     - name: Set up Ruby
+  #       uses: ruby/setup-ruby@v1
+  #       with:
+  #         ruby-version: '3.3'
+        
+  #     - name: Install github_changelog_generator
+  #       run: gem install github_changelog_generator
+
+  #     - name: Generate Changelog
+  #       run: |
+  #         git fetch --tags --force
+  #         latest_tag=$(git describe --tags `git rev-list --tags --max-count=1`)
+  #         github_changelog_generator -u confy-security -p android --since-tag $latest_tag
+  #       env:
+  #         CHANGELOG_GITHUB_TOKEN: ${{ secrets.CHANGELOG_GITHUB_TOKEN }}
+      
+  #     - name: Upload CHANGELOG file
+  #       uses: actions/upload-artifact@v4
+  #       with:
+  #         name: CHANGELOG
+  #         path: CHANGELOG.md
+
+  build-android:
+    name: Build for Android
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      packages: write
+      actions: write
+      discussions: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build with Buildozer
+        uses: ArtemSBulgakov/buildozer-action@v1
+        id: buildozer
+        with:
+          workdir: test_app
+          buildozer_version: stable
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: confy-android
+          path: ${{ steps.buildozer.outputs.filename }}
+          if-no-files-found: error
+    
+      # - name: Download CHANGELOG artifact
+      #   uses: actions/download-artifact@v4
+      #   with:
+      #     name: CHANGELOG
+      #     path: .
+        
+      # - name: Release
+      #   uses: softprops/action-gh-release@v2
+      #   if: startsWith(github.ref, 'refs/tags/')
+      #   with:
+      #     prerelease: true # Definir como falso se não for uma versão de pré-lançamento
+      #     body_path: ./CHANGELOG.md
+      #     files: |
+      #       ${{ steps.buildozer.outputs.filename }}/*
