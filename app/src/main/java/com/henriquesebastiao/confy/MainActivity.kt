@@ -1,5 +1,6 @@
 package com.henriquesebastiao.confy
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -35,6 +36,9 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(applicationContext, "Nome de usuário não inserido", Toast.LENGTH_SHORT).show()
             } else if (serverAddress.isEmpty()) {
                 Toast.makeText(applicationContext, "Endereço do servidor não inserido", Toast.LENGTH_SHORT).show()
+            } else {
+                val intent = Intent(this, ConnectToUserActivity::class.java)
+                startActivity(intent)
             }
         }
     }
