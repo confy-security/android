@@ -1,6 +1,7 @@
 package com.henriquesebastiao.confy
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -23,11 +24,17 @@ class MainActivity : AppCompatActivity() {
 
         // Actions performed when the connect button is clicked.
         binding.buttonConnect.setOnClickListener {
-            val username: String = binding.usernameInput.text.toString()
-            val serverAddress: String = binding.serverAddressInput.text.toString()
+            val username: String = binding.usernameInput.text.toString().trim()
+            val serverAddress: String = binding.serverAddressInput.text.toString().trim()
 
-            binding.usernameView.text = username
-            binding.serverAddressView.text = serverAddress
+            if (username.isEmpty() && serverAddress.isEmpty()) {
+                Toast.makeText(applicationContext, "Informações não inseridas", Toast.LENGTH_SHORT)
+                    .show()
+            } else if (username.isEmpty()) {
+                Toast.makeText(applicationContext, "Nome de usuário não inserido", Toast.LENGTH_SHORT).show()
+            } else if (serverAddress.isEmpty()) {
+                Toast.makeText(applicationContext, "Endereço do servidor não inserido", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 }
