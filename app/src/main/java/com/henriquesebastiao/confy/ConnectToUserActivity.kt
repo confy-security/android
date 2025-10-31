@@ -22,10 +22,12 @@ class ConnectToUserActivity : AppCompatActivity() {
             insets
         }
 
-        val recipientUsernameInput: String = binding.recipientUsernameInput.text.toString().trim()
+        binding.startChatButton.setOnClickListener {
+            val recipientUsernameInput: String = binding.recipientUsernameInput.text.toString().trim()
 
-        if (recipientUsernameInput.isEmpty()) {
-            Toast.makeText(applicationContext, "Nome de usuário não inserido", Toast.LENGTH_SHORT).show()
+            if (recipientUsernameInput.isEmpty()) {
+                Toast.makeText(applicationContext, "Nome de usuário não inserido", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 }
