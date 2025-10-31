@@ -24,6 +24,7 @@ class MainActivity : AppCompatActivity() {
 
         // Actions performed when the connect button is clicked.
         binding.buttonConnect.setOnClickListener {
+            // The method trim() removes any leading or trailing whitespace from the input.
             val username: String = binding.usernameInput.text.toString().trim()
             val serverAddress: String = binding.serverAddressInput.text.toString().trim()
 
