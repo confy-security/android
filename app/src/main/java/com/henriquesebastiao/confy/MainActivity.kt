@@ -26,15 +26,15 @@ class MainActivity : AppCompatActivity() {
         // Actions performed when the connect button is clicked.
         binding.buttonConnect.setOnClickListener {
             // The method trim() removes any leading or trailing whitespace from the input.
-            val username: String = binding.usernameInput.text.toString().trim()
-            val serverAddress: String = binding.serverAddressInput.text.toString().trim()
+            val usernameInput: String = binding.usernameInput.text.toString().trim()
+            val serverAddressInput: String = binding.serverAddressInput.text.toString().trim()
 
-            if (username.isEmpty() && serverAddress.isEmpty()) {
+            if (usernameInput.isEmpty() && serverAddressInput.isEmpty()) {
                 Toast.makeText(applicationContext, "Informações não inseridas", Toast.LENGTH_SHORT)
                     .show()
-            } else if (username.isEmpty()) {
+            } else if (usernameInput.isEmpty()) {
                 Toast.makeText(applicationContext, "Nome de usuário não inserido", Toast.LENGTH_SHORT).show()
-            } else if (serverAddress.isEmpty()) {
+            } else if (serverAddressInput.isEmpty()) {
                 Toast.makeText(applicationContext, "Endereço do servidor não inserido", Toast.LENGTH_SHORT).show()
             } else {
                 val intent = Intent(this, ConnectToUserActivity::class.java)
