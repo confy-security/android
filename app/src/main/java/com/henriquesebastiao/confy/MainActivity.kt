@@ -38,6 +38,11 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(applicationContext, "Endereço do servidor não inserido", Toast.LENGTH_SHORT).show()
             } else {
                 val intent = Intent(this, ConnectToUserActivity::class.java)
+
+                // Passing the username and server address to the ConnectToUserActivity.
+                intent.putExtra("username", usernameInput)
+                intent.putExtra("serverAddress", serverAddressInput)
+
                 startActivity(intent)
             }
         }

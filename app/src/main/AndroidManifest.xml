@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Confy">
         <activity
+            android:name=".ChatActivity"
+            android:exported="false" />
+        <activity
             android:name=".ConnectToUserActivity"
             android:exported="false" />
         <activity

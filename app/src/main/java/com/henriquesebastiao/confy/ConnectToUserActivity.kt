@@ -1,5 +1,6 @@
 package com.henriquesebastiao.confy
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -27,6 +28,15 @@ class ConnectToUserActivity : AppCompatActivity() {
 
             if (recipientUsernameInput.isEmpty()) {
                 Toast.makeText(applicationContext, "Nome de usuário não inserido", Toast.LENGTH_SHORT).show()
+            } else {
+                val i = intent
+                val intent = Intent(this, ChatActivity::class.java)
+
+                intent.putExtra("username", i.extras?.getString("username"))
+                intent.putExtra("serverAddress", i.extras?.getString("serverAddress"))
+                intent.putExtra("recipientUsername", recipientUsernameInput)
+
+                startActivity(intent)
             }
         }
     }
